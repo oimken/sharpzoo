@@ -55,13 +55,14 @@ class Repository implements SharpCmsRepository, SharpIsReorderable, SharpEloquen
 
     function delete($id)
     {
+        Zone::destroy($id);
     }
 
     function createWebpageEmbed($instance)
     {
        return new Webpage([
            "owner_id" => $instance->id,
-           "owner_type" => 'Quincy\Sharp\Zone\Zone'
+           "owner_type" => 'App\Sharp\Zone\Zone'
        ]);
     }
 
@@ -69,7 +70,7 @@ class Repository implements SharpCmsRepository, SharpIsReorderable, SharpEloquen
     {
         return new Photo([
             "animal_id" => $instance->id,
-            "animal_type" => 'Quincy\Sharp\Webpage\Webpage'
+            "animal_type" => 'App\Sharp\Webpage\Webpage'
         ]);
     }
 

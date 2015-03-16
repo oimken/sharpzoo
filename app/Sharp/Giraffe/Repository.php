@@ -222,7 +222,7 @@ class Repository implements SharpCmsRepository, SharpHasActivateState, SharpHasS
     {
         return new Photo([
             "animal_id" => $instance->id,
-            "animal_type" => 'Quincy\Sharp\Giraffe\Giraffe'
+            "animal_type" => 'App\Sharp\Giraffe\Giraffe'
         ]);
     }
 
