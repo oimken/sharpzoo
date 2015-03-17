@@ -5,8 +5,8 @@ return [
     "auth_service" => false,
 //    "auth_service" => '\App\Sharp\SharpAuthentication',
     "languages" => [
-        "fr" => "French",
-        "en" => "English"
+        "en" => "English",
+        "fr" => "French"
     ],
     "cms" => [
         "africa" => [
