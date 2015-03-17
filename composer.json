@@ -1,11 +1,11 @@
 {
-	"name": "dvlpp/sharpzoo",
+	"name": "oimken/sharpzoo",
 	"description": "Sharp test app.",
 	"keywords": ["sharp"],
 	"type": "project",
 	"require": {
 		"laravel/framework": "5.0.*",
-		"dvlpp/sharp": "dev-master",
+		"oimken/sharp": "dev-master",
 		"illuminate/html": "~5.0",
 		"doctrine/dbal": "~2.3",
 		"fzaninotto/faker": "1.3.*@dev"
