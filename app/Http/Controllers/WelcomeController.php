@@ -1,6 +1,6 @@
 <?php namespace App\Http\Controllers;
 
-class WelcomeController extends Controller {
+class WelcomeController extends CommonController {
 
 	/*
 	|--------------------------------------------------------------------------
@@ -20,6 +20,7 @@ class WelcomeController extends Controller {
 	 */
 	public function __construct()
 	{
+        parent::__construct();
 		$this->middleware('guest');
 	}
 

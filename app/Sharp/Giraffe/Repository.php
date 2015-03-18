@@ -1,6 +1,8 @@
 <?php namespace App\Sharp\Giraffe;
 
-use Dvlpp\Sharp\Lang\SharpLanguage;
+//use Dvlpp\Sharp\Lang\SharpLanguage;
+use Mcamara\LaravelLocalization\LaravelLocalization;
+
 use Dvlpp\Sharp\ListView\SharpEntitiesListParams;
 use Dvlpp\Sharp\Repositories\SharpCmsRepository;
 use Dvlpp\Sharp\Repositories\SharpEloquentRepositoryUpdaterTrait;
@@ -19,9 +21,9 @@ class Repository implements SharpCmsRepository, SharpHasActivateState, SharpHasS
 
     protected $lang;
 
-    function __construct(SharpLanguage $sharpLang)
+    function __construct(LaravelLocalization $laravelLocalization)
     {
-        $this->lang = $sharpLang->current();
+        $this->lang = $laravelLocalization->getCurrentLocale();
     }
 
     /**

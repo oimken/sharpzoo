@@ -3,7 +3,7 @@
 return [
     "name" => "SharpZoo",
     "auth_service" => false,
-//    "auth_service" => '\App\Sharp\SharpAuthentication',
+    "auth_service" => '\App\Sharp\SharpAuthentication',
     "languages" => [
         "en" => "English",
         "fr" => "French"

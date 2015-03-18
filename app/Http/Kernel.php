@@ -16,6 +16,8 @@ class Kernel extends HttpKernel {
 		'Illuminate\Session\Middleware\StartSession',
 		'Illuminate\View\Middleware\ShareErrorsFromSession',
 		'App\Http\Middleware\VerifyCsrfToken',
+
+        'Mcamara\LaravelLocalization\Middleware\LocaleSessionRedirect'
 	];
 
 	/**
@@ -27,6 +29,14 @@ class Kernel extends HttpKernel {
 		'auth' => 'App\Http\Middleware\Authenticate',
 		'auth.basic' => 'Illuminate\Auth\Middleware\AuthenticateWithBasicAuth',
 		'guest' => 'App\Http\Middleware\RedirectIfAuthenticated',
-	];
+
+        // Localize MIDDLEWARE
+        'localize' => 'Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRoutes',
+        'localizationRedirect' => 'Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRedirectFilter',
+
+    ];
+
+
+
 
 }

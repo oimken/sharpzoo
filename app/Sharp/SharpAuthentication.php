@@ -26,6 +26,7 @@ class SharpAuthentication implements SharpAuth {
      */
     function login($login, $password)
     {
+
         if (Auth::attempt(array('login' => $login, 'password' => $password)))
         {
             return Auth::user()->login;

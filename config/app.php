@@ -26,7 +26,7 @@ return [
 	|
 	*/
 
-	'url' => 'sharpzoo.app:8000',
+	'url' => 'sharpzoo.lr',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -52,7 +52,7 @@ return [
 	|
 	*/
 
-	'locale' => 'fr',
+	'locale' => 'en',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -195,6 +195,7 @@ return [
 		'Validator' => 'Illuminate\Support\Facades\Validator',
 		'View'      => 'Illuminate\Support\Facades\View',
 
+        'LaravelLocalization'   => 'Mcamara\LaravelLocalization\Facades\LaravelLocalization'
 	],
 
 ];
