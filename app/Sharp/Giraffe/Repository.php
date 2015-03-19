@@ -1,6 +1,7 @@
 <?php namespace App\Sharp\Giraffe;
 
 //use Dvlpp\Sharp\Lang\SharpLanguage;
+use Illuminate\Support\Facades\Event;
 use Mcamara\LaravelLocalization\LaravelLocalization;
 
 use Dvlpp\Sharp\ListView\SharpEntitiesListParams;
@@ -13,7 +14,8 @@ use App\Sharp\Photo\Photo;
 use App\Sharp\Zookeeper\Zookeeper;
 use File;
 
-class Repository implements SharpCmsRepository, SharpHasActivateState, SharpHasSublist, SharpEloquentRepositoryUpdaterWithUploads {
+class Repository implements SharpCmsRepository, SharpHasActivateState, SharpHasSublist, SharpEloquentRepositoryUpdaterWithUploads
+{
 
     use SharpEloquentRepositoryUpdaterTrait;
 
@@ -47,8 +49,7 @@ class Repository implements SharpCmsRepository, SharpHasActivateState, SharpHasS
     {
         $giraffes = Giraffe::with('zookeeper');
 
-        if($params->getSortedColumn())
-        {
+        if ($params->getSortedColumn()) {
             $giraffes->orderBy($params->getSortedColumn(), $params->getSortedDirection());
         }
 
@@ -68,47 +69,36 @@ class Repository implements SharpCmsRepository, SharpHasActivateState, SharpHasS
             ->where("lang", $this->lang)
             ->where("zookeeper_id", $this->getCurrentSublistId());
 
-        if($params->getSearch())
-        {
-            if($params->isAdvancedSearch())
-            {
-                foreach($params->getSearch() as $field => $value)
-                {
-                    switch($field)
-                    {
+        if ($params->getSearch()) {
+            if ($params->isAdvancedSearch()) {
+                foreach ($params->getSearch() as $field => $value) {
+                    switch ($field) {
                         case "age":
                             $ageComp = $params->getAdvancedSearchValue("age_comp");
                             $giraffes->where("age", $ageComp, $value);
                             break;
 
                         case "name":
-                            foreach(explode_search_words($value) as $term)
-                            {
+                            foreach (explode_search_words($value) as $term) {
                                 $giraffes->where("name", "like", $term);
                             }
                             break;
 
                         case "particularities":
-                            foreach($value as $v)
-                            {
-                                $giraffes->whereExists(function($query) use ($v)
-                                {
+                            foreach ($value as $v) {
+                                $giraffes->whereExists(function ($query) use ($v) {
                                     $query->select('giraffe_id')
                                         ->from('giraffes_particularities')
                                         ->whereRaw('giraffes_particularities.giraffe_id = giraffes.id '
-                                            .'AND giraffes_particularities.particularity_id='.$v);
+                                            . 'AND giraffes_particularities.particularity_id=' . $v);
                                 });
                             }
                     }
                 }
-            }
-
-            else
-            {
+            } else {
                 // Quicksearch
-                foreach(explode_search_words($params->getSearch()) as $term)
-                {
-                    $giraffes->where(function ($query) use($term) {
+                foreach (explode_search_words($params->getSearch()) as $term) {
+                    $giraffes->where(function ($query) use ($term) {
                         $query->orWhere("name", "like", $term)
                             ->orWhere('desc', 'like', $term);
                     });
@@ -116,8 +106,7 @@ class Repository implements SharpCmsRepository, SharpHasActivateState, SharpHasS
             }
         }
 
-        if($params->getSortedColumn())
-        {
+        if ($params->getSortedColumn()) {
             $giraffes->orderBy($params->getSortedColumn(), $params->getSortedDirection());
         }
 
@@ -203,8 +192,7 @@ class Repository implements SharpCmsRepository, SharpHasActivateState, SharpHasS
 
     function getCurrentSublistId()
     {
-        if(!$this->currentZookeeperId)
-        {
+        if (!$this->currentZookeeperId) {
             $this->currentZookeeperId = Zookeeper::orderBy("name", "asc")->first()->id;
         }
 
@@ -215,7 +203,7 @@ class Repository implements SharpCmsRepository, SharpHasActivateState, SharpHasS
     {
         $zookeepers = Zookeeper::orderBy("name", "ASC")->get();
         $tab = [];
-        foreach($zookeepers as $zk) $tab[$zk->id] = $zk->name;
+        foreach ($zookeepers as $zk) $tab[$zk->id] = $zk->name;
 
         return $tab;
     }
@@ -242,13 +230,10 @@ class Repository implements SharpCmsRepository, SharpHasActivateState, SharpHasS
             ? public_path("files/photos")
             : public_path("files/giraffes");
 
-        if(starts_with($file, ":DUPL:"))
-        {
+        if (starts_with($file, ":DUPL:")) {
             $file = substr($file, strlen(":DUPL:"));
             $fileName = $this->moveFile($file, $destPath, true);
-        }
-        else
-        {
+        } else {
             $file = public_path("tmp/$file");
             $fileName = $this->moveFile($file, $destPath);
         }
@@ -268,24 +253,19 @@ class Repository implements SharpCmsRepository, SharpHasActivateState, SharpHasS
         $instance->$attr = null;
     }
 
-    private function moveFile($file, $dest, $copy=false)
+    private function moveFile($file, $dest, $copy = false)
     {
         $fileName = basename($file);
         $srcFile = $file;
 
-        if(File::exists($srcFile))
-        {
-            if(!File::isDirectory($dest))
-            {
+        if (File::exists($srcFile)) {
+            if (!File::isDirectory($dest)) {
                 File::makeDirectory($dest, 0777, true);
             }
 
-            if($copy)
-            {
+            if ($copy) {
                 File::copy($srcFile, "$dest/$fileName");
-            }
-            else
-            {
+            } else {
                 File::move($srcFile, "$dest/$fileName");
             }
 
@@ -293,5 +273,20 @@ class Repository implements SharpCmsRepository, SharpHasActivateState, SharpHasS
         }
 
         return null;
+    }
+
+    /**
+     * Make sure Duplicated target Language and current language is not the same.
+     * @param $instance
+     * @return bool|object
+     */
+    function prepareForDuplication($instance)
+    {
+        if ($instance->lang == $instance->__sharp_duplication) {
+            return false;
+        }
+        $instance->lang = $instance->__sharp_duplication;
+        return $instance;
+
     }
 }
