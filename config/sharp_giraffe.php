@@ -4,9 +4,9 @@
  */
 
 return  [
-    "label"   => "Giraffe",
+    "label"   => "sharp::config.giraffe",
     "icon"    => "star",
-    "plural"  => "Giraffes",
+    "plural"  => "sharp::config.giraffes",
 
     "id_attribute" => "id",
 

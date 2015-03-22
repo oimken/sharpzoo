@@ -1,9 +1,9 @@
 <?php
 
 return [
-    "label"   => "Zone",
+    "label"   => "sharp::config.zone",
     "icon"    => "map-marker",
-    "plural"  => "Zones",
+    "plural"  => "sharp::config.zones",
 
     // List columns
     "list_template" => [

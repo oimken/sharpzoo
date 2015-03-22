@@ -21,7 +21,7 @@ class CreateGiraffesTable extends Migration {
             $table->text('desc')->nullable();
             $table->boolean('alive')->default(1);
             $table->string('picture')->nullable();
-            $table->string('lang')->default('fr');
+            $table->string('lang')->default('en');
             $table->integer('zookeeper_id')->unsigned()->nullable()->index();
             $table->foreign('zookeeper_id')->references('id')->on('zookeepers')->onDelete('set null');
 			$table->timestamps();

@@ -21,7 +21,7 @@ class Repository implements SharpCmsRepository, SharpHasActivateState, SharpHasS
 
     protected $currentZookeeperId;
 
-    protected $lang;
+    public $lang;
 
     function __construct(LaravelLocalization $laravelLocalization)
     {
@@ -134,7 +134,7 @@ class Repository implements SharpCmsRepository, SharpHasActivateState, SharpHasS
      */
     function create(Array $data)
     {
-        //dd($data);
+//        dd($data);
         $this->update(null, $data);
     }
 
