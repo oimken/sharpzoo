@@ -4,23 +4,23 @@
  */
 
 return  [
-    "label"   => "sharp::menu.giraffe",
+    "label"   => "sharp::menu.page",
     "icon"    => "star",
-    "plural"  => "sharp::menu.giraffes",
+    "plural"  => "sharp::menu.pages",
 
     "id_attribute" => "id",
 
-    "active_state_field" => "alive",
+    "active_state_field" => "actived",
 
     "duplicable" => true,
 
     "commands" => [
         "list" => [
-            "export" => [
-                "text" => "Export (CSV)",
-                "type" => "download",
-                "handler" => '\App\Sharp\Giraffe\ExportCsvCommand',
-            ]
+//            "export" => [
+//                "text" => "Export (CSV)",
+//                "type" => "download",
+//                "handler" => '\App\Sharp\Giraffe\ExportCsvCommand',
+//            ]
         ],
         "entity" => [
             "birthday" => [
@@ -79,25 +79,25 @@ return  [
     // List columns
     "list_template" => [
         "columns" => [
-            "picture" => [
-                "width" => 1,
-                "renderer" => 'thumbnail:100x100'
-            ],
-            "name" => [
-                "header"   => "Name",
-                "sortable" => true,
-                "width" => 6
-            ],
-            "age" => [
-                "header"   => "Age",
-                "sortable" => true,
-                "width" => 2
-            ],
-            "height" => [
-                "header"   => "Height",
-                "width" => 1,
-                "renderer" => '\App\Sharp\Giraffe\HeightColumnsRenderer'
-            ]
+//            "picture" => [
+//                "width" => 1,
+//                "renderer" => 'thumbnail:100x100'
+//            ],
+//            "name" => [
+//                "header"   => "Name",
+//                "sortable" => true,
+//                "width" => 6
+//            ],
+//            "age" => [
+//                "header"   => "Age",
+//                "sortable" => true,
+//                "width" => 2
+//            ],
+//            "height" => [
+//                "header"   => "Height",
+//                "width" => 1,
+//                "renderer" => '\App\Sharp\Giraffe\HeightColumnsRenderer'
+//            ]
         ],
 
         "paginate" => 10,
@@ -107,8 +107,8 @@ return  [
     ],
 
     // Model
-    "repository" => '\App\Sharp\Giraffe\Repository',
-    "validator" => '\App\Sharp\Giraffe\Validator',
+    "repository" => '\App\Sharp\Page\Repository',
+    "validator" => '\App\Sharp\Page\Validator',
 
     // Fields
     "form_fields" => [

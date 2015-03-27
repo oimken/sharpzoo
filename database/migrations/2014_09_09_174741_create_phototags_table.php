@@ -14,6 +14,7 @@ class CreatePhototagsTable extends Migration {
 	{
 		Schema::create('phototags', function(Blueprint $table)
 		{
+            $table->engine = 'MyISAM';
 			$table->increments('id');
             $table->string("text");
 			$table->timestamps();

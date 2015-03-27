@@ -14,6 +14,7 @@ class CreatePhotosTable extends Migration {
 	{
 		Schema::create('photos', function(Blueprint $table)
 		{
+            $table->engine = 'MyISAM';
 			$table->increments('id');
             $table->string('file');
             $table->text('legend');

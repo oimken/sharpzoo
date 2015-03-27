@@ -14,6 +14,7 @@ class CreateAnimalCardTable extends Migration {
 	{
 		Schema::create('animal_cards', function(Blueprint $table)
 		{
+            $table->engine = 'MyISAM';
 			$table->increments('id');
             $table->string('number');
             $table->enum('origin', ["0" => "Unknown", "zoo" => "Other Zoo", "wild" => "Wild life"])->nullable();

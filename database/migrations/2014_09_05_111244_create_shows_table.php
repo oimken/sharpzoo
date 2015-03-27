@@ -14,6 +14,7 @@ class CreateShowsTable extends Migration {
 	{
 		Schema::create('shows', function(Blueprint $table)
 		{
+            $table->engine = 'MyISAM';
 			$table->increments('id');
             $table->string('title');
             $table->text('desc')->nullable();

@@ -14,6 +14,7 @@ class CreateZookeepersTable extends Migration {
 	{
 		Schema::create('zookeepers', function(Blueprint $table)
 		{
+            $table->engine = 'MyISAM';
 			$table->increments('id');
             $table->string('name');
 			$table->timestamps();

@@ -1,5 +1,8 @@
 <?php namespace App\Http\Controllers;
 
+
+
+use App\Sharp\Content\Content;
 class HomeController extends CommonController {
 
 	/*
@@ -31,7 +34,9 @@ class HomeController extends CommonController {
 	 */
 	public function index()
 	{
-		return view('home');
+        $content = new Content;
+
+        return view('home');
 	}
 
 }

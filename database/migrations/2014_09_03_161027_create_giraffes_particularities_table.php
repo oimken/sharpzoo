@@ -14,6 +14,7 @@ class CreateGiraffesParticularitiesTable extends Migration {
 	{
 		Schema::create('giraffes_particularities', function(Blueprint $table)
 		{
+            $table->engine = 'MyISAM';
 			$table->increments('id');
             $table->integer('giraffe_id')->unsigned()->nullable()->index();
             $table->foreign('giraffe_id')->references('id')->on('giraffes')->onDelete('cascade');

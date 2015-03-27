@@ -14,6 +14,7 @@ class CreateWebblocksTable extends Migration {
 	{
 		Schema::create('webblocks', function(Blueprint $table)
 		{
+            $table->engine = 'MyISAM';
 			$table->increments('id');
             $table->integer('webpage_id')->unsigned()->index();
             $table->foreign('webpage_id')->references('id')->on('webpages')->onDelete('cascade');

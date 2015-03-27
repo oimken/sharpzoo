@@ -1,7 +1,7 @@
 <?php
 
 return [
-    "name" => "sharp::config.name",
+    "name" => "sharp::menu.name",
     "auth_service" => false,
     "auth_service" => '\App\Sharp\SharpAuthentication',
     "languages" => [
@@ -10,7 +10,7 @@ return [
     ],
     "cms" => [
         "africa" => [
-            "label" => "sharp::config.african_area",
+            "label" => "sharp::menu.african_area",
 
             "entities" => [
                 "giraffe" => "file:sharp_giraffe",

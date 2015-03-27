@@ -14,6 +14,7 @@ class CreateZonesTable extends Migration {
 	{
 		Schema::create('zones', function(Blueprint $table)
 		{
+            $table->engine = 'MyISAM';
 			$table->increments('id');
             $table->string("name");
             $table->integer("order");

@@ -14,6 +14,7 @@ class CreateParticularitiesTable extends Migration {
 	{
 		Schema::create('particularities', function(Blueprint $table)
 		{
+            $table->engine = 'MyISAM';
 			$table->increments('id');
             $table->string('name');
 			$table->timestamps();

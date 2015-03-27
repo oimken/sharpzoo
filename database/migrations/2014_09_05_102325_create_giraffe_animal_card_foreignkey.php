@@ -14,6 +14,7 @@ class CreateGiraffeAnimalCardForeignkey extends Migration {
 	{
 		Schema::table('giraffes', function(Blueprint $table)
 		{
+            $table->engine = 'MyISAM';
             $table->integer('animal_card_id')->unsigned()->nullable()->index();
             $table->foreign('animal_card_id')->references('id')->on('animal_cards')->onDelete('set null');
 		});

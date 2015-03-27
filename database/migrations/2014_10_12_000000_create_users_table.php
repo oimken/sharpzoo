@@ -14,6 +14,7 @@ class CreateUsersTable extends Migration {
 	{
 		Schema::create('users', function(Blueprint $table)
 		{
+            $table->engine = 'MyISAM';
 			$table->increments('id');
 			$table->string('login');
 			$table->boolean('is_sharp_user')->default(false);

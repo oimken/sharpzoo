@@ -14,6 +14,7 @@ class CreateGiraffesTable extends Migration {
 	{
 		Schema::create('giraffes', function(Blueprint $table)
 		{
+            $table->engine = 'MyISAM';
 			$table->increments('id');
             $table->string('name');
             $table->integer('height')->nullable();

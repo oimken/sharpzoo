@@ -14,6 +14,7 @@ class CreatePhotoPhototagTable extends Migration {
 	{
 		Schema::create('photo_phototag', function(Blueprint $table)
 		{
+            $table->engine = 'MyISAM';
 			$table->increments('id');
             $table->integer('photo_id')->unsigned()->index();
             $table->foreign('photo_id')->references('id')->on('photos')->onDelete('cascade');
